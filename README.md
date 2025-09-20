@@ -86,6 +86,7 @@ O projeto já vem com configurações padrão, mas você pode personalizar:
 
 3. **Acesse a aplicação**
    Abra seu navegador e acesse: [http://localhost:4200](http://localhost:4200)
+   Deploy: https://gestao-app-8gho.onrender.com
 
 
 ## 📄 Licença
