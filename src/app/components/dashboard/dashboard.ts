@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, DecimalPipe, TitleCasePipe } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CostService } from '../../services/cost';
 import { ChartData, ChartOptions } from 'chart.js';
@@ -20,14 +20,13 @@ import { RouterModule } from '@angular/router';
   selector: 'app-dashboard',
   standalone: true,
   imports: [
-    CommonModule, 
-    FormsModule, 
-    BaseChartDirective, 
-    FontAwesomeModule, 
+    CommonModule,
+    FormsModule,
+    BaseChartDirective,
+    FontAwesomeModule,
     RouterModule,
-    TitleCasePipe,
-    DecimalPipe
-  ],
+    TitleCasePipe
+],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.scss']
 })
