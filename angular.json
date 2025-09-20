@@ -17,7 +17,8 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "browser": "src/main.ts",
+            "browser": "",
+            "outputPath": "dist/gestao-app",
             "polyfills": [
               "zone.js"
             ],
