@@ -1,27 +1,91 @@
-<section class="card">
-  <h2>Dashboard</h2>
+<div class="dashboard-container">
+  <header class="header">
+    <h2>Visão Geral</h2>
+    <div class="month-selector">
+      <label for="month">Período:</label>
+      <input 
+        type="month" 
+        id="month"
+        [value]="month" 
+        (change)="changeMonth($event)"
+        [max]="currentDate"
+        [disabled]="loading">
+    </div>
+  </header>
 
-  <div class="form">
-    <input type="month" [value]="month" (change)="changeMonth($event)" />
+  <div class="summary-card">
+    <div class="period">Total gasto em {{ month | date:'MMMM yyyy' | titlecase }}</div>
+    <div class="total-amount">
+      {{ total | currency:'BRL':'symbol':'1.2-2' }}
+      <small *ngIf="total > 0">em {{ pieData.labels?.length || 0 }} categorias</small>
+    </div>
+    <div class="trend" *ngIf="trend !== 0">
+      <span [class.positive]="trend > 0" [class.negative]="trend < 0">
+        <fa-icon [icon]="trend > 0 ? faArrowUp : faArrowDown"></fa-icon>
+        {{ Math.abs(trend) }}% em relação ao mês anterior
+      </span>
+    </div>
   </div>
 
-  <div *ngIf="loading">Carregando...</div>
-
-  <div *ngIf="!loading">
-    <div class="total">
-      <h3>Total do Mês: R$ {{ total | number:'1.2-2' }}</h3>
-    </div>
-
-    <div class="chart" *ngIf="pieData.labels && pieData.labels.length">
-      <canvas baseChart
+  <div class="chart-container">
+    <h3>
+      <fa-icon [icon]="faChartPie"></fa-icon>
+      Distribuição de Gastos
+    </h3>
+    
+    <div class="chart-wrapper">
+      <div *ngIf="!loading && (!pieData.datasets[0].data || pieData.datasets[0].data.length === 0)" class="no-data">
+        <fa-icon [icon]="faChartPie"></fa-icon>
+        <p>Nenhum dado disponível para o período selecionado</p>
+        <p class="text-muted">Adicione despesas para visualizar o gráfico</p>
+      </div>
+      
+      <canvas 
+        *ngIf="!loading && pieData.datasets[0].data && pieData.datasets[0].data.length > 0"
+        baseChart
         [data]="pieData"
-        [options]="pieOptions"
-        type="pie">
+        [type]="'pie'"
+        [options]="pieOptions">
       </canvas>
+      
+      <div *ngIf="loading" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Carregando dados...</p>
+      </div>
     </div>
-
-    <div *ngIf="!pieData.labels || pieData.labels.length === 0">
-      Nenhum dado disponível para este mês.
+    
+    <div *ngIf="!loading && pieData.datasets[0].data && pieData.datasets[0].data.length > 0" class="chart-legend">
+      <div class="legend-item" *ngFor="let label of pieData.labels; let i = index">
+        <span class="legend-color" [style.background]="getBackgroundColor(i)"></span>
+        <span class="legend-label">{{ label }}</span>
+        <span class="legend-value">{{ pieData.datasets[0].data[i] | currency:'BRL':'symbol':'1.2-2' }}</span>
+      </div>
     </div>
   </div>
-</section>
+  
+  <div class="quick-stats">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <fa-icon [icon]="faTags"></fa-icon>
+      </div>
+      <div class="stat-value">{{ centersCount }}</div>
+      <div class="stat-label">Categorias Cadastradas</div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon">
+        <fa-icon [icon]="faReceipt"></fa-icon>
+      </div>
+      <div class="stat-value">{{ expensesCount }}</div>
+      <div class="stat-label">Despesas Registradas</div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon">
+        <fa-icon [icon]="faCalendarAlt"></fa-icon>
+      </div>
+      <div class="stat-value">{{ month | date:'MMM/yy' | titlecase }}</div>
+      <div class="stat-label">Mês Atual</div>
+    </div>
+  </div>
+</div>

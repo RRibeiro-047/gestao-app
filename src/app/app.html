@@ -1,16 +1,43 @@
-<header class="topbar">
-  <h1>{{ title }}</h1>
-  <nav>
-    <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-    <a routerLink="/centers" routerLinkActive="active">Centros</a>
-    <a routerLink="/expenses" routerLinkActive="active">Despesas</a>
-  </nav>
-</header>
+<div class="app-container">
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <h1 class="logo">{{ title }}</h1>
+        <nav class="nav" [class.mobile-open]="isMobileMenuOpen">
+          <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMobileMenu()">
+            <fa-icon [icon]="faChartPie"></fa-icon> Dashboard
+          </a>
+          <a routerLink="/centers" routerLinkActive="active" (click)="closeMobileMenu()">
+            <fa-icon [icon]="faTags"></fa-icon> Centros
+          </a>
+          <a routerLink="/expenses" routerLinkActive="active" (click)="closeMobileMenu()">
+            <fa-icon [icon]="faReceipt"></fa-icon> Despesas
+          </a>
+        </nav>
+        <button class="mobile-menu-button" (click)="toggleMobileMenu()" aria-label="Menu">
+          <fa-icon [icon]="faBars"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </header>
 
-<main class="main">
-  <router-outlet></router-outlet>
-</main>
+  <main class="main-content">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
 
-<footer class="footer">
-  <small>Feito por Ricardo — versão para processo seletivo</small>
-</footer>
+  <footer class="footer">
+    <div class="container">
+      <p>© {{ currentYear }} Gestão de Custos - Desenvolvido por Ricardo</p>
+      <div class="social-links">
+        <a href="https://github.com/RRibeiro-047" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <fa-icon [icon]="faGithub"></fa-icon>
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <fa-icon [icon]="faLinkedin"></fa-icon>
+        </a>
+      </div>
+    </div>
+  </footer>
+</div>

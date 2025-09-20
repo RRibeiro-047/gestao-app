@@ -1,59 +1,93 @@
-# GestaoApp
+## 📋 Visão Geral
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.2.
+O Gestão de Custos é uma aplicação web desenvolvida para auxiliar no controle e gerenciamento de despesas pessoais ou empresariais. Com uma interface intuitiva e responsiva, os usuários podem cadastrar centros de custo, registrar despesas e visualizar relatórios detalhados sobre seus gastos.
 
-## Development server
+### ✨ Funcionalidades Principais
 
-To start a local development server, run:
+- 📊 Dashboard interativo com gráficos de distribuição de gastos
+- 🏷️ Cadastro e gerenciamento de centros de custo
+- 💸 Registro detalhado de despesas
+- 📅 Filtragem por período (mensal)
+- 📱 Design responsivo que funciona em qualquer dispositivo
 
-```bash
-ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 🛠️ Tecnologias Utilizadas
 
-## Code scaffolding
+### Frontend
+- **Angular 16+** - Framework para construção da interface do usuário
+- **TypeScript** - Linguagem tipada que compila para JavaScript
+- **Chart.js** - Biblioteca para criação de gráficos interativos
+- **ng2-charts** - Componentes Angular para Chart.js
+- **Font Awesome** - Ícones premium
+- **SCSS** - Pré-processador CSS para estilização avançada
+- **Angular Material** - Componentes de UI seguindo o Material Design
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Backend
+- **Node.js** - Ambiente de execução JavaScript
+- **Express** - Framework web para Node.js
+- **TypeScript** - Tipagem estática para o backend
+- **CORS** - Middleware para requisições entre domínios
+- **UUID** - Geração de IDs únicos
 
-```bash
-ng generate component component-name
-```
+## 🚀 Como Executar o Projeto
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Pré-requisitos
 
-```bash
-ng generate --help
-```
+- Node.js (versão 16 ou superior)
+- npm (gerenciador de pacotes) ou Yarn
+- Angular CLI (para desenvolvimento)
 
-## Building
+### Instalação
 
-To build the project run:
+1. **Clone o repositório**
+   ```bash
+   git clone https://github.com/RRibeiro-047/gestao-app
+   cd gestao-app
+   ```
 
-```bash
-ng build
-```
+2. **Instale as dependências do frontend**
+   ```bash
+   npm install
+   # ou
+   yarn install
+   ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+3. **Instale as dependências do backend**
+   ```bash
+   cd backend
+   npm install
+   # ou
+   yarn install
+   cd ..
+   ```
 
-## Running unit tests
+### Configuração
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+O projeto já vem com configurações padrão, mas você pode personalizar:
+- Porta do servidor backend: Edite `backend/serve.ts`
+- URL da API: Atualize em `src/app/services/cost.service.ts`
 
-```bash
-ng test
-```
+### Executando a Aplicação
 
-## Running end-to-end tests
+1. **Inicie o servidor backend**
+   ```bash
+   cd backend
+   npm run dev
+   # ou
+   yarn dev
+   ```
 
-For end-to-end (e2e) testing, run:
+2. **Em outro terminal, inicie o servidor de desenvolvimento do Angular**
+   ```bash
+   ng serve
+   # ou
+   npm start
+   ```
 
-```bash
-ng e2e
-```
+3. **Acesse a aplicação**
+   Abra seu navegador e acesse: [http://localhost:4200](http://localhost:4200)
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-## Additional Resources
+## 📄 Licença
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
