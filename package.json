@@ -7,10 +7,10 @@
     "start:api": "nodemon --exec ts-node --project tsconfig.backend.json backend/serve.ts",
     "start:dev": "concurrently \"npm run start:api\" \"ng serve --open\"",
     "build": "ng build --output-path=dist/gestao-app/browser --base-href /",
-    "build:vercel": "node vercel-build.js",
+    "build:vercel": "ng build --configuration=production",
+    "vercel-build": "npm run build:vercel",
     "test": "ng test",
-    "lint": "ng lint",
-    "vercel-build": "npm run build:vercel"
+    "lint": "ng lint"
   },
   "prettier": {
     "printWidth": 100,
