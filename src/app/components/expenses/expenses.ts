@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { commonModule } from '@angular/common';
-import { formdModule } from '@angular/forms';
+import { CommonModule, DecimalPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { CostService } from '../../services/cost';
 import { Center, Expense } from '../../app';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-expenses',
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterModule, DecimalPipe],
   templateUrl: './expenses.html',
   styleUrls: ['./expenses.scss']
 })

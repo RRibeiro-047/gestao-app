@@ -1,15 +1,15 @@
 {
   "name": "gestao-app",
   "version": "0.0.0",
- "scripts": {
-  "ng": "ng",
-  "start": "ng serve",
-  "start:api": "nodemon backend/server.ts",
-  "start:dev": "concurrently \"npm run start:api\" \"ng serve --open\"",
-  "build": "ng build",
-  "test": "ng test",
-  "lint": "ng lint"
-},
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "start:api": "nodemon --exec ts-node --project tsconfig.backend.json backend/serve.ts",
+    "start:dev": "concurrently \"npm run start:api\" \"ng serve --open\"",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint"
+  },
   "prettier": {
     "printWidth": 100,
     "singleQuote": true,
@@ -40,8 +40,11 @@
     "@angular/build": "^20.3.2",
     "@angular/cli": "^20.3.2",
     "@angular/compiler-cli": "^20.3.0",
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/jasmine": "~5.1.0",
+    "@types/node": "^24.5.2",
+    "@types/uuid": "^10.0.0",
     "concurrently": "^9.2.1",
     "cors": "^2.8.5",
     "express": "^5.1.0",
@@ -52,6 +55,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
     "typescript": "~5.9.2",
     "uuid": "^13.0.0"
   }
