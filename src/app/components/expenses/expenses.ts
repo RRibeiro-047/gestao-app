@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { commonModule } from '@angular/common';
+import { formdModule } from '@angular/forms';
 import { CostService } from '../../services/cost';
 import { Center, Expense } from '../../app';
 

@@ -1,44 +1,16 @@
-import { Component, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router'; // Import RouterModule
-
-import { NgChartsModule } from 'ng2-charts';
-import { Centers } from './components/centers/centers';
-import { Expenses } from './components/expenses/expenses';
-import { Dashboard } from './components/dashboard/dashboard';
-import { routes } from './app.routes'; // Import routes
-
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })
 export class AppComponent {
    title = 'Gestão de Custos — Mini App';
 }
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    Centers,
-    Expenses,
-    Dashboard
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(routes), // Add RouterModule here
-    HttpClientModule,
-    FormsModule,
-    NgChartsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
 
 export interface Center {
   id: string;

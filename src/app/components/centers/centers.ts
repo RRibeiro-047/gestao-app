@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { CostService } from '../../services/cost';
 import { Center } from '../../app';
 
 @Component({
   selector: 'app-centers',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './centers.html',
   styleUrls: ['./centers.scss']
 })
