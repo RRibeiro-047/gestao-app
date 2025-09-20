@@ -1,0 +1,24 @@
+<section class="card">
+  <h2>Centros de Custo</h2>
+
+  <div class="form">
+    <input [(ngModel)]="newName" placeholder="Nome do centro" />
+    <input [(ngModel)]="newDescription" placeholder="Descrição (opcional)" />
+    <button (click)="add()">Adicionar</button>
+  </div>
+
+  <div *ngIf="loading">Carregando...</div>
+  <ul *ngIf="!loading && centers.length">
+    <li *ngFor="let c of centers">
+      <div class="left">
+        <strong>{{ c.name }}</strong>
+        <span class="desc">{{ c.description }}</span>
+      </div>
+      <div class="right">
+        <button class="danger" (click)="remove(c.id)">Excluir</button>
+      </div>
+    </li>
+  </ul>
+
+  <div *ngIf="!loading && centers.length === 0">Nenhum centro cadastrado.</div>
+</section>

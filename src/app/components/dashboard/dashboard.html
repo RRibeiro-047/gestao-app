@@ -1,0 +1,40 @@
+import { Component, OnInit } from '@angular/core';
+import { CostService } from '../../services/cost.service';
+import { ChartData, ChartOptions } from 'chart.js';
+
+@Component({
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
+})
+export class DashboardComponent implements OnInit {
+  month = new Date().toISOString().slice(0,7); // YYYY-MM
+  total = 0;
+
+  public pieData: ChartData<'pie', number[], string[]> = { labels: [], datasets: [{ data: [] }] };
+  public pieOptions: ChartOptions<'pie'> = { responsive: true };
+
+  loading = false;
+
+  constructor(private svc: CostService) { }
+
+  ngOnInit(): void {
+    this.load();
+  }
+
+  load() {
+    this.loading = true;
+    this.svc.getDashboard(this.month).subscribe((d: any) => {
+      this.total = d.total;
+      const labels = d.summary.map((s: any) => s.center);
+      const data = d.summary.map((s: any) => s.total);
+      this.pieData = { labels, datasets: [{ data }] };
+      this.loading = false;
+    }, () => this.loading = false);
+  }
+
+  changeMonth(ev: any) {
+    this.month = ev.target.value;
+    this.load();
+  }
+}

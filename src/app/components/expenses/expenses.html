@@ -1,0 +1,33 @@
+<section class="card">
+  <h2>Despesas</h2>
+
+  <div class="form">
+    <select [(ngModel)]="newExpense.centerId">
+      <option value="">Selecione o centro</option>
+      <option *ngFor="let c of centers" [value]="c.id">{{ c.name }}</option>
+    </select>
+    <input [(ngModel)]="newExpense.description" placeholder="Descrição" />
+    <input type="number" [(ngModel)]="newExpense.value" placeholder="Valor" />
+    <input type="date" [(ngModel)]="newExpense.date" />
+    <button (click)="addExpense()">Salvar</button>
+  </div>
+
+  <div *ngIf="loading">Carregando...</div>
+
+  <table *ngIf="!loading && expenses.length">
+    <thead>
+      <tr><th>Data</th><th>Centro</th><th>Descrição</th><th>Valor</th><th></th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of expenses">
+        <td>{{ e.date }}</td>
+        <td>{{ centerName(e.centerId) }}</td>
+        <td>{{ e.description }}</td>
+        <td>R$ {{ e.value | number:'1.2-2' }}</td>
+        <td><button class="danger" (click)="remove(e.id)">Excluir</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && expenses.length === 0">Nenhuma despesa registrada.</div>
+</section>
